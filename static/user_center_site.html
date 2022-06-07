@@ -1,0 +1,490 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>创客花店-用户中心</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+    <style>
+        .right-main {
+            border-radius: 12px;
+        }
+
+        .address-wrap {
+            margin: 24px;
+        }
+
+        .add-address {
+            width: 124px;
+            height: 36px;
+            background: #37ab40;
+            background: linear-gradient(90deg, #37ab40 0%, #37ab40 100%);
+            border-radius: 20px;
+            color: white;
+            line-height: 36px;
+            text-align: center;
+            display: inline-block;
+            cursor: pointer;
+            margin-left: 14px;
+        }
+
+        .address-sub {
+            font-size: 14px;
+            color: #71797F;
+        }
+
+        .address-wrap .address-info {
+            border: 1px solid #F3F5F7;
+            background: white;
+        }
+
+        table {
+            font-size: 12px;
+            color: #232628;
+            width: 80%;
+            border-radius: 8px;
+        }
+
+            table thead {
+                height: 24px;
+                line-height: 24px;
+                background: #F7F9FA;
+                border-radius: 8px 8px 0px 0px;
+                border: 1px solid #F3F5F7;
+            }
+
+            table th {
+                font-weight: normal;
+            }
+
+            table .consignee {
+                width: 168px;
+                padding-left: 24px;
+                box-sizing: border-box;
+            }
+
+            table tbody .consignee {
+                width: 168px;
+                height: 60px;
+                word-break: break-all;
+                padding-right: 10px;
+            }
+
+            table tbody .shipping {
+                width: 372px;
+                height: 60px;
+                line-height: 20px;
+                padding-right: 48px;
+            }
+
+            table tbody .phone {
+                width: 133px;
+                padding-right: 48px;
+            }
+
+            table tbody .address-icon {
+                width: 12px;
+                height: 12px;
+                margin-right: 5px;
+                vertical-align: baseline;
+            }
+
+            table tbody div {
+                display: inline-block;
+                overflow: hidden;
+                color: #7E7A99;
+                width: 60px;
+                cursor: pointer;
+            }
+
+        .address-empty-icon {
+            width: 145px;
+            height: 145px;
+            margin: 145px auto 12px;
+            display: block;
+        }
+
+        .address-empty-text {
+            color: #71797F;
+            font-size: 14px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        a:hover, a:focus {
+            color: white;
+            text-decoration: none;
+        }
+
+        .consigneeModal-title {
+            font-size: 16px;
+            color: #232628;
+            margin: 0 0 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        #consigneeModal .modal-content {
+            padding: 28px 36px 36px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .modal-content .close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+        }
+
+        .consigneeModal-line {
+            color: #232628;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+            .consigneeModal-line input {
+                width: 365px;
+                outline: none;
+                border: none;
+                background: #F7F9FA;
+                border-radius: 8px;
+                height: 36px;
+                padding: 0 12px;
+                box-sizing: border-box;
+                display: inline-block;
+            }
+
+                .consigneeModal-line input::-webkit-input-placeholder {
+                    color: #B4BABF;
+                }
+
+                .consigneeModal-line input::-moz-placeholder {
+                    color: #B4BABF;
+                }
+
+                .consigneeModal-line input::-ms-input-placeholder {
+                    color: #B4BABF;
+                }
+
+        .consigneeModal-line-title {
+            width: 68px;
+            margin-right: 16px;
+            display: inline-block;
+        }
+
+            .consigneeModal-line-title span {
+                color: #FF734C;
+            }
+
+        #consigneeModal .modal-dialog {
+            width: 528px;
+        }
+
+        .consigneeModal-btns {
+            margin-top: 24px;
+        }
+
+        .consigneeModal-btn {
+            width: 132px;
+            text-align: center;
+            height: 36px;
+            line-height: 36px;
+            color: white;
+            font-size: 13px;
+            background: #37ab40;
+            background: linear-gradient(90deg, #37ab40 0%, #37ab40 100%);
+            border-radius: 18px;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+        }
+
+        .consigneeModal-btn-grey {
+            width: 132px;
+            text-align: center;
+            line-height: 36px;
+            height: 36px;
+            color: #71797F;
+            font-size: 13px;
+            background: #FFFFFF;
+            border-radius: 20px;
+            border: 1px solid #E9ECF0;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .consigneeModal-cite {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+            .consigneeModal-cite .form-control {
+                background: #F7F9FA;
+                border-radius: 8px;
+                border: none;
+                color: #272727;
+            }
+
+        .delete-address-icon {
+            margin: 36px auto 12px;
+            display: block;
+        }
+
+        .delete-address-title {
+            text-align: center;
+            font-size: 21px;
+            color: #232628;
+            margin-bottom: 32px;
+        }
+    </style>
+</head>
+<body>
+	<div class="header_con">
+		<div class="header">
+			<div class="welcome fl">欢迎来到创客花店!</div>
+			<div class="fr">
+				<div class="login_info fl">
+					欢迎您：<em>张 山</em>
+				</div>
+				<div class="login_btn fl">
+					<a href="login.html">登录</a>
+					<span>|</span>
+					<a href="register.html">注册</a>
+				</div>
+				<div class="user_link fl">
+					<span>|</span>
+					<a href="user_center_info.html">用户中心</a>
+					<span>|</span>
+					<a href="cart.html">我的购物车</a>
+					<span>|</span>
+					<a href="user_center_order.html">我的订单</a>
+				</div>
+			</div>
+		</div>		
+	</div>
+
+	<div class="search_bar clearfix">
+		<a href="index.html" class="logo fl"><img src="Image/LOGO.png" height="70"></a>
+		<div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;用户中心</div>
+		<div class="search_con fr">
+			<input type="text" class="input_text fl" name="" placeholder="搜索商品">
+			<input type="button" class="input_btn fr" name="" value="搜索">
+		</div>		
+	</div>
+	<div class="navbar_con">
+		<div class="navbar clearfix">
+			<div class="subnav_con fl">
+				<h1>全部商品分类</h1>
+				<span></span>
+				<ul class="subnav">
+                    <li><a href="#model01" class="Fresh">鲜切花</a></li>
+					<li><a href="#model02" class="Fake">仿真花</a></li>
+					<li><a href="#model03" class="Forever">永生花</a></li>
+					<li><a href="#model04" class="Green">绿植</a></li>
+					<li><a href="#model05" class="Dry">干花</a></li>
+					<li><a href="#model06" class="Vase">花瓶</a></li>
+		
+				</ul>
+			</div>
+			<ul class="navlist fl">
+				<li><a href="">首页</a></li>
+				<li class="interval">|</li>
+				<li><a href="">供应商入驻</a></li>
+				<li class="interval">|</li>
+				<li><a href="">创客头条</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="main_con clearfix">
+		<div class="left_menu_con clearfix">
+			<div class="breadcrumb">
+				<a href="#">首页</a>
+				<span>></span>
+				<a href="#">用户中心</a>
+				<span>></span>
+				<a href="#">收货地址：</a>
+			</div>
+			<ul>
+				<li><a href="user_center_info.html">个人信息</a></li>
+				<li><a href="user_center_history.html">浏览记录</a></li>
+				<li><a href="user_center_site.html" class="active">收货地址</a></li>
+				<li><a href="user_center_order.html" >订单管理</a></li>
+				
+			</ul>
+		</div>
+		<div class="pull-left right-main">
+            <div class="member-r">
+                <div class="address-wrap">
+                        <div class="address-add">
+                            <a href="javascript:AddressOper('ismember','add')" class="add-address">新增收货地址</a>
+                            <span class="address-sub">您已创建1个收货地址，最多可建50个</span>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="consignee">收货人</th>
+                                    <th class="shipping">收货地址</th>
+                                    <th class="phone">联系电话</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <tr class="address-info" dist="新城区" prov="内蒙古" city="呼和浩特市" code="150102" id="2996655" ,addCode="1">
+                                        <th class="consignee">黄思进</th>
+                                        <th class="shipping">内蒙古 呼和浩特市 新城区 啊啊啊啊</th>
+                                        <th class="phone" val="18750423485">187****3485</th>
+                                        <th>
+                                            <div onclick="AddressOper('2996655','edit', $(this).parents('.address-info'))">
+                                                <img class="address-icon" src="https://img02.hua.com/pc/Images/2021new/address-edit.png" alt="">
+                                                修改
+                                            </div>
+                                            <div onclick="AddressOper('2996655','del')">
+                                                <img class="address-icon" src="https://img02.hua.com/pc/Images/2021new/address-del.png" alt="">
+                                                删除
+                                            </div>
+                                                <div style="width:100px">默认地址</div>
+                                        </th>
+                                    </tr>
+                                    <tr class="address-info" dist="新城区" prov="内蒙古" city="呼和浩特市" code="150102" id="2996655" ,addCode="1">
+                                        <th class="consignee">黄思进</th>
+                                        <th class="shipping">内蒙古 呼和浩特市 新城区 啊啊啊啊</th>
+                                        <th class="phone" val="18750423485">187****3485</th>
+                                        <th>
+                                            <div onclick="AddressOper('2996655','edit', $(this).parents('.address-info'))">
+                                                <img class="address-icon" src="https://img02.hua.com/pc/Images/2021new/address-edit.png" alt="">
+                                                修改
+                                            </div>
+                                            <div onclick="AddressOper('2996655','del')">
+                                                <img class="address-icon" src="https://img02.hua.com/pc/Images/2021new/address-del.png" alt="">
+                                                删除
+                                            </div>
+                                                <div style="width:100px">默认地址</div>
+                                        </th>
+                                    </tr>
+                                    <tr class="address-info" dist="新城区" prov="内蒙古" city="呼和浩特市" code="150102" id="2996655" ,addCode="1">
+                                        <th class="consignee">黄思进</th>
+                                        <th class="shipping">内蒙古 呼和浩特市 新城区 啊啊啊啊</th>
+                                        <th class="phone" val="18750423485">187****3485</th>
+                                        <th>
+                                            <div onclick="AddressOper('2996655','edit', $(this).parents('.address-info'))">
+                                                <img class="address-icon" src="https://img02.hua.com/pc/Images/2021new/address-edit.png" alt="">
+                                                修改
+                                            </div>
+                                            <div onclick="AddressOper('2996655','del')">
+                                                <img class="address-icon" src="https://img02.hua.com/pc/Images/2021new/address-del.png" alt="">
+                                                删除
+                                            </div>
+                                                <div style="width:100px">默认地址</div>
+                                        </th>
+                                    </tr>
+                                    <tr class="address-info" dist="新城区" prov="内蒙古" city="呼和浩特市" code="150102" id="2996655" ,addCode="1">
+                                        <th class="consignee">黄思进</th>
+                                        <th class="shipping">内蒙古 呼和浩特市 新城区 啊啊啊啊</th>
+                                        <th class="phone" val="18750423485">187****3485</th>
+                                        <th>
+                                            <div onclick="AddressOper('2996655','edit', $(this).parents('.address-info'))">
+                                                <img class="address-icon" src="https://img02.hua.com/pc/Images/2021new/address-edit.png" alt="">
+                                                修改
+                                            </div>
+                                            <div onclick="AddressOper('2996655','del')">
+                                                <img class="address-icon" src="https://img02.hua.com/pc/Images/2021new/address-del.png" alt="">
+                                                删除
+                                            </div>
+                                                <div style="width:100px">默认地址</div>
+                                        </th>
+                                    </tr>
+                                    <tr class="address-info" dist="新城区" prov="内蒙古" city="呼和浩特市" code="150102" id="2996655" ,addCode="1">
+                                        <th class="consignee">黄思进</th>
+                                        <th class="shipping">内蒙古 呼和浩特市 新城区 啊啊啊啊</th>
+                                        <th class="phone" val="18750423485">187****3485</th>
+                                        <th>
+                                            <div onclick="AddressOper('2996655','edit', $(this).parents('.address-info'))">
+                                                <img class="address-icon" src="https://img02.hua.com/pc/Images/2021new/address-edit.png" alt="">
+                                                修改
+                                            </div>
+                                            <div onclick="AddressOper('2996655','del')">
+                                                <img class="address-icon" src="https://img02.hua.com/pc/Images/2021new/address-del.png" alt="">
+                                                删除
+                                            </div>
+                                                <div style="width:100px">默认地址</div>
+                                        </th>
+                                    </tr>
+                                    
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+
+	</div>
+    <div class="modal fade delete-address">
+    <div class="modal-dialog" style="width: 312px;height:228px;margin-top: 290px;">
+        <div class="modal-content" style="padding-bottom: 36px;">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <img src="https://img02.hua.com/pc/Images/2021new/address-delete-icon.png" alt="" class="delete-address-icon">
+            <div class="delete-address-title">确定要删除该地址吗？</div>
+            <div class="consigneeModal-btns">
+                <div class="c-btn consigneeModal-btn-grey" onclick="$('.delete-address').modal('hide');" style="width:108px;margin: 0 24px 0 36px;">取消</div>
+                <div class="c-btn consigneeModal-btn" onclick="addressDel()" style="width:108px;">确定</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade add-edit-address" id="consigneeModal">
+    <div class="modal-dialog">
+        <form class="modal-content">
+            <input type="hidden" name="id" id="id" value="" />
+            <input type="hidden" name="addCode" id="addCode" value="" />
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="consigneeModal-title">新增（修改）收货地址</div>
+            <div class="consigneeModal-line">
+                <span class="consigneeModal-line-title"><span>* </span>收 货 人</span>
+                <input type="text" name="username" placeholder="请输入收货人姓名">
+            </div>
+            <div class="consigneeModal-line">
+                <span class="consigneeModal-line-title"><span>* </span>手机号码</span>
+                <input type="text" name="tel" placeholder="请输入收货人手机号码">
+            </div>
+            <div class="consigneeModal-line" id="city_1">
+                <span class="consigneeModal-line-title"><span>* </span>所在地区</span>
+                <div class="consigneeModal-cite">
+                    <select class="form-control" id="to_state" name="to_state"></select>
+                </div>
+                <div class="consigneeModal-cite">
+                    <select class="form-control" id="to_city" name="to_city" disabled="disabled"></select>
+                </div>
+                <0div class="consigneeModal-cite">
+                    <select class="form-control" id="to_area_code" name="to_area_code" disabled="disabled"></select>
+                    <input type="hidden" id="to_area" name="to_area" />
+                </0div>
+            </div>
+            <div class="consigneeModal-line">
+                <span class="consigneeModal-line-title"><span>* </span>详细地址</span>
+                <input type="text" name="address" placeholder="请输入详细地址">
+            </div>
+            <div class="consigneeModal-btns">
+                <button class="c-btn consigneeModal-btn" type="button" onClick="confirmForm();" style="margin: 0 24px 0 90px;">保存地址</button>
+                <div class="c-btn consigneeModal-btn-grey" onclick="$('#consigneeModal').modal('hide')">取消</div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+	<div class="footer">
+		<div class="foot_link">
+			<a href="#">关于我们</a>
+			<span>|</span>
+			<a href="#">联系我们</a>
+			<span>|</span>
+			<a href="#">招聘人才</a>
+			<span>|</span>
+			<a href="#">友情链接</a>		
+		</div>
+		<p>CopyRight © 2022 福建创客信息技术有限公司 All Rights Reserved</p>
+		<p>电话：010-****888    京ICP备*******8号</p>
+	</div>
+	
+</body>
+</html>

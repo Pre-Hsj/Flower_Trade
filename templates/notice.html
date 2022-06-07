@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		 <link rel="stylesheet" href={% static '/css/amazeui.min.css' %} />
+		  <link rel="stylesheet" href={% static 'css/admin.css' %}/>
+	</head>
+	<body>
+		<div class="admin-content-body">
+      	<div class="am-cf am-padding am-padding-bottom-0">
+	        <h3 class="am-fl am-cf">
+	          <strong class="am-text-primary am-text-lg">网站公告</strong>
+	        </h3>
+      	</div>
+		<div style="width: auto; height: 300px;">
+            {% for notice in notices %}
+                {{ notice.publicNumber }}&nbsp;&nbsp;&nbsp;&nbsp;{{ notice.publicTitle }}&nbsp;&nbsp;&nbsp;&nbsp;{{ notice.create_time }}
+                <div style="background: lightseagreen; opacity: 0.7; color: white; ">
+                    {{ notice.publicContent }}
+                </div>
+            {% endfor %}
+		</div>
+
+
+    </div>
+	</body>
+</html>

@@ -1,0 +1,85 @@
+.navbar-default{
+	background-color: black;
+}
+
+.navbar-form .btn-default{
+	background-color: green;
+	border: green;
+	color: white;
+}
+
+.container-small{
+	max-width: 1100px;
+}
+
+.content{
+	margin-top: 20px;
+}
+
+.content input{
+	background: rgb(0,0,0,0.1);
+}
+
+.input-bar{
+	width: 200px; 
+	display: inline-block;
+}
+
+.content img{
+	margin-left: 10px;
+	width: 150px;
+	height: 150px;
+}
+
+.necessary{
+	color: red; 
+	font-size: 15px;
+}
+
+.content-title{
+	font-size: 16px;
+}
+
+.content .change-photo{
+	display: inline-block;
+	margin-left: 10px;
+}
+
+.change-photo .file{
+	width: 72px; 
+	overflow: hidden;
+	border-radius: 3px;
+}
+
+.change-photo .change-btn{
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.content .checkone{
+	margin-left: 10px;
+}
+
+.container-mideum{
+	margin: 0 auto 0;
+	margin-top: 40px;
+	max-width: 800px;
+	margin-left: 40px;
+}
+
+.table{
+	text-align: center;
+}
+
+.thead{
+	font-weight: 1000; 
+	font-size: 15px;
+}
+
+.footer{
+	margin-top: 100px;
+	padding: 50px 0;
+	text-align: center;
+	background: rgba(0,0,0,0.05);
+	color:#8C8C8C;
+}

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创客花园-首页</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+	<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/slide.js"></script>
+
+
+</head>
+<body>
+    <!-- 顶部欢迎框，初始化信息 -->
+    <div class="header_con">
+		<div class="header">
+			<div class="welcome fl">欢迎来到创客花园!</div>
+			<div class="fr">
+				<div class="login_info fl">
+					欢迎您：<em>张 山</em>
+				</div>
+				<div class="login_btn fl">
+					<a href="login.html">登录</a>
+					<span>|</span>
+					<a href="register.html">注册</a>
+				</div>
+				<div class="user_link fl">
+					<span>|</span>
+					<a href="user_center_info.html">用户中心</a>
+					<span>|</span>
+					<a href="cart.html">我的购物车</a>
+					<span>|</span>
+					<a href="user_center_order.html">我的订单</a>
+				</div>
+			</div>
+		</div>		
+	</div>
+    
+
+    <!-- 搜索框 -->
+    <div class="search_bar clearfix">
+		<a href="index.html" class="logo fl"><img src="Image/LOGO.png" height="70px"></a>
+		<div class="search_con fl">
+			<input type="text" class="input_text fl" name="" placeholder="搜索商品">
+			<input type="button" class="input_btn fr" name="" value="搜索">
+		</div>
+		<div class="guest_cart fr">
+			<a href="#" class="cart_name fl">我的购物车</a>
+			<div class="goods_count fl" id="show_count">1</div>
+		</div>
+	</div>
+
+    <div class="navbar_con">
+		<div class="navbar">
+			<h1 class="fl">全部商品分类</h1>
+			<ul class="navlist fl">
+				<li><a href="#">首页</a></li>
+				<li class="interval">|</li>
+				<li><a href="#">供应商入驻</a></li>
+				<li class="interval">|</li>
+				<li><a href="#">创客头条</a></li>
+			</ul>
+ 		</div>
+	</div>
+
+    
+	<div class="center_con clearfix">
+		<ul class="subnav fl">
+			<li><a href="#model01" class="Fresh">鲜切花</a></li>
+			<li><a href="#model02" class="Fake">仿真花</a></li>
+			<li><a href="#model03" class="Forever">永生花</a></li>
+			<li><a href="#model04" class="Green">绿植</a></li>
+			<li><a href="#model05" class="Dry">干花</a></li>
+			<li><a href="#model06" class="Vase">花瓶</a></li>
+		</ul>
+		<div class="slide fl">
+			<ul class="slide_pics">
+				<li><img src="images/slide.jpg" alt="幻灯片"></li>
+				<li><img src="images/slide02.jpg" alt="幻灯片"></li>
+				<li><img src="images/slide03.jpg" alt="幻灯片"></li>
+				<li><img src="images/slide04.jpg" alt="幻灯片"></li>
+				<li><img src="images/slide04.jpg" alt="幻灯片"></li>
+			</ul>
+			<div class="prev"></div>
+			<div class="next"></div>
+			<ul class="points"></ul>
+		</div>
+		<div class="adv fl">
+			<a href="#"><img src="images/adv01.jpg"></a>
+			<a href="#"><img src="images/adv02.jpg"></a>
+		</div>
+		
+	</div>
+
+	<div class="list_model">
+		<div class="list_title clearfix">
+			<h3 class="fl" id="model01">鲜切花</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				<a href="#">坦尼克玫瑰</a>
+				<a href="#">向日葵</a>
+				<a href="#">香槟玫瑰</a>
+			</div>
+			<a href="#" class="goods_more fr" id="fruit_more">查看更多 ></a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="Image/Banners/Fresh.jpg"></div>
+			<ul class="goods_list fl">
+				<li>
+					<h4><a href="#">白玫瑰</a></h4>
+					<a href="#"><img src="Image/Kinds/Fresh/1.jpg"></a>
+					<div class="prize">¥ 330.00</div>
+				</li>
+				<li>
+					<h4><a href="#">粉玫瑰</a></h4>
+					<a href="#"><img src="Image/Kinds/Fresh/2.jpg"></a>
+					<div class="prize">¥ 150.50</div>
+				</li>
+				<li>
+					<h4><a href="#">洛神玫瑰</a></h4>
+					<a href="#"><img src="Image/Kinds/Fresh/3.jpg"></a>
+					<div class="prize">¥ 300.90</div>
+				</li>
+				<li>
+					<h4><a href="#">卡罗拉红玫瑰</a></h4>
+					<a href="#"><img src="Image/Kinds/Fresh/4.jpg"></a>
+					<div class="prize">¥ 250.80</div>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+
+	<div class="list_model">
+		<div class="list_title clearfix">
+			<h3 class="fl" id="model02">仿真花</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				<a href="#">仿黄玫瑰</a>
+				<a href="#">仿杜鹃花</a>				
+			</div>
+			<a href="#" class="goods_more fr">查看更多 ></a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="Image/Banners/Fake.jpg"></div>
+			<ul class="goods_list fl">
+				<li>
+					<h4><a href="#">北欧仿焦</a></h4>
+					<a href="#"><img src="Image/Kinds/Fake/1.jpg"></a>
+					<div class="prize">¥ 128.00</div>
+				</li>
+				<li>
+					<h4><a href="#">仿希腊干花玫瑰</a></h4>
+					<a href="#"><img src="Image/Kinds/Fake/2.jpg"></a>
+					<div class="prize">¥ 109.90</div>
+				</li>
+				<li>
+					<h4><a href="#">复古做旧牡丹花</a></h4>
+					<a href="#"><img src="Image/Kinds/Fake/3.jpg"></a>
+					<div class="prize">¥ 208.00</div>
+				</li>
+				<li>
+					<h4><a href="#">仿红色发财果</a></h4>
+					<a href="#"><img src="Image/Kinds/Fake/4.jpg"></a>
+					<div class="prize">¥ 248.00</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="list_model">
+		<div class="list_title clearfix">
+			<h3 class="fl" id="model03">永生花</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				<a href="#">香皂花永生花</a>
+				<a href="#">黑玫瑰永生花</a>
+				<a href="#">白百何永生花</a>
+			</div>
+			<a href="#" class="goods_more fr">查看更多 ></a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="Image/Banners/Forever.jpg"></div>
+			<ul class="goods_list fl">
+				<li>
+					<h4><a href="#">红色玫瑰永生花</a></h4>
+					<a href="#"><img src="Image/Kinds/Forever/1.jpg"></a>
+					<div class="prize">¥ 38.00</div>
+				</li>
+				<li>
+					<h4><a href="#">白玫瑰</a></h4>
+					<a href="#"><img src="Image/Kinds/Forever/2.jpg"></a>
+					<div class="prize">¥ 109.00</div>
+				</li>
+				<li>
+					<h4><a href="#">红色樱花永生花</a></h4>
+					<a href="#"><img src="Image/Kinds/Forever/3.jpg"></a>
+					<div class="prize">¥ 138.00</div>
+				</li>
+				<li>
+					<h4><a href="#">紫玫瑰永生花</a></h4>
+					<a href="#"><img src="Image/Kinds/Forever/4.jpg"></a>
+					<div class="prize">¥ 999.00</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="list_model">
+		<div class="list_title clearfix">
+			<h3 class="fl" id="model04">绿植</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				<a href="#">金钱树</a>
+				<a href="#">锦紫露兰</a>
+				<a href="#">迎客松</a>
+			</div>
+			<a href="#" class="goods_more fr">查看更多 ></a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="Image/Banners/Green.jpg"></div>
+			<ul class="goods_list fl">
+				<li>
+					<h4><a href="#">九里香</a></h4>
+					<a href="#"><img src="Image/Kinds/Green/1.jpg"></a>
+					<div class="prize">¥ 98.00</div>
+				</li>
+				<li>
+					<h4><a href="#">红松梅</a></h4>
+					<a href="#"><img src="Image/Kinds/Green/2.jpg"></a>
+					<div class="prize">¥ 99.00</div>
+				</li>
+				<li>
+					<h4><a href="#">散尾葵</a></h4>
+					<a href="#"><img src="Image/Kinds/Green/3.jpg"></a>
+					<div class="prize">¥ 82.00</div>
+				</li>
+				<li>
+					<h4><a href="#">发财树</a></h4>
+					<a href="#"><img src="Image/Kinds/Green/4.jpg"></a>
+					<div class="prize">¥ 39.00</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="list_model">
+		<div class="list_title clearfix">
+			<h3 class="fl" id="model05">干花</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				<a href="#">招财干花</a>
+				<a href="#">牡丹花干花</a>
+				<a href="#">小雏菊麦秆</a>
+			</div>
+			<a href="#" class="goods_more fr">查看更多 ></a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="Image/Banners/Dry.jpg"></div>
+			<ul class="goods_list fl">
+				<li>
+					<h4><a href="#">尤加利叶干花</a></h4>
+					<a href="#"><img src="Image/Kinds/Dry/1.jpg"></a>
+					<div class="prize">¥ 37.90</div>
+				</li>
+				<li>
+					<h4><a href="#">干花松果</a></h4>
+					<a href="#"><img src="Image/Kinds/Dry/2.jpg"></a>
+					<div class="prize">¥ 29.80</div>
+				</li>
+				<li>
+					<h4><a href="#">芦苇干花</a></h4>
+					<a href="#"><img src="Image/Kinds/Dry/3.jpg"></a>
+					<div class="prize">¥ 56.25</div>
+				</li>
+				<li>
+					<h4><a href="#">希腊玫瑰干花</a></h4>
+					<a href="#"><img src="Image/Kinds/Dry/4.jpg"></a>
+					<div class="prize">¥ 109.90</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="list_model">
+		<div class="list_title clearfix">
+			<h3 class="fl" id="model06">花瓶</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				<a href="#">白色陶瓷花瓶</a>
+				<a href="#">磨砂花瓶</a>
+				<a href="#">景德镇陶瓷花瓶</a>
+			</div>
+			<a href="#" class="goods_more fr">查看更多 ></a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="Image/Banners/Vase.jpg"></div>
+			<ul class="goods_list fl">
+				<li>
+					<h4><a href="#">欧式玻璃花瓶</a></h4>
+					<a href="#"><img src="Image/Kinds/Vase/1.jpg"></a>
+					<div class="prize">¥ 5.00</div>
+				</li>
+				<li>
+					<h4><a href="#">陶瓷珐琅花瓶</a></h4>
+					<a href="#"><img src="Image/Kinds/Vase/2.jpg"></a>
+					<div class="prize">¥ 888.00</div>
+				</li>
+				<li>
+					<h4><a href="#">琉璃花瓶</a></h4>
+					<a href="#"><img src="Image/Kinds/Vase/3.jpg"></a>
+					<div class="prize">¥ 198.00</div>
+				</li>
+				<li>
+					<h4><a href="#">异形琉璃花瓶</a></h4>
+					<a href="#"><img src="Image/Kinds/Vase/4.jpg"></a>
+					<div class="prize">¥ 168.00</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="footer">
+		<div class="foot_link">
+			<a href="#">关于我们</a>
+			<span>|</span>
+			<a href="#">联系我们</a>
+			<span>|</span>
+			<a href="#">招聘人才</a>
+			<span>|</span>
+			<a href="#">友情链接</a>		
+		</div>
+		<p>CopyRight © 2022 福建创客信息技术有限公司 All Rights Reserved</p>
+		<p>电话：010-****888    京ICP备*******8号</p>
+	</div>
+
+	<script type="text/javascript">
+		BCSlideshow('focuspic');
+		var oFruit = document.getElementById('fruit_more');
+		var oShownum = document.getElementById('show_count');
+
+		var hasorder = localStorage.getItem('order_finish');
+
+		if(hasorder)
+		{
+			oShownum.innerHTML = '2';
+		}
+
+		oFruit.onclick = function(){
+			window.location.href = 'list.html';
+		}
+	</script>
+</body>
+</html>

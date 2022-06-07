@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/layui.css">
+    <script src="/js/layui.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+</head>
+<body>
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+        <ul class="layui-tab-title">
+          <li class="layui-this">全部商品</li>
+          <li><a href="">已上架</a></li>
+          <li><a href="">已下架</a></li>
+          <li><a href="">待上架</a></li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="demoTable">
+                搜索商品名称：
+               <div class="layui-inline">
+                    <input class="layui-input" name="keyword" id="demoReload" autocomplete="off">
+               </div>
+                     <button class="layui-btn" data-type="reload">搜索</button>
+               </div>
+              
+              <table class="layui-hide" id="LAY_table_user" lay-filter="useruv"></table>
+              <script type="text/html" id="barDemo">
+                <a class="layui-btn layui-btn-primary layui-btn-mini" lay-event="detail">查看</a>
+                <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+            </script>
+        </div>
+    </div>      
+    <script>
+        layui.use('table', function(){
+         var table = layui.table;
+
+        //方法级渲染
+        table.render({
+           elem: '#LAY_table_user'
+           ,url: 'UVServlet'
+           ,cols: [[
+               {checkbox: true, fixed: true}
+               ,{field:'id', title: '编号', width:80, sort: true, fixed: true}
+               ,{field:'image', title: '图片', width:120}
+               ,{field:'name', title: '名称', width:120}
+               ,{field:'desc', title: '简介', width:120}
+               ,{field:'price', title: '价格', width:80,sort: true,}
+               ,{field:'unite', title: '单位', width:80}
+               ,{field:'sale', title: '销量', width:80, sort: true}
+               ,{field:'stock', title: '库存量', width:120,sort: true,}
+               ,{field:'status', title: '状态', width:80}
+               ,{field:'right', title: '操作', width:177,toolbar:"#barDemo"}
+           ]]
+           ,id: 'testReload'
+           ,page: true
+           ,height: 600
+       });
+
+       var $ = layui.$, active = {
+           reload: function(){
+               var demoReload = $('#demoReload');
+
+               table.reload('testReload', {
+                   where: {
+                       keyword: demoReload.val()
+               }
+               });
+           }
+       };
+
+
+
+   //监听表格复选框选择
+   table.on('checkbox(useruv)', function(obj){
+       console.log(obj)
+   });
+
+});
+</script>
+</body>
+</html>

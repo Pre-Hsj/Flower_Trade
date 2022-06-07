@@ -1,0 +1,53 @@
+{# 用户中心3页面 #}
+{% extends 'base_no_cart.html' %}
+{% block title %}创客花店-用户中心{% endblock title %}
+{% block page_title %}用户中心{% endblock page_title %}
+{% block body %}
+	<div class="navbar_con">
+		<div class="navbar clearfix">
+			<div class="subnav_con fl">
+				<h1>全部商品分类</h1>
+				<span></span>
+				<ul class="subnav">
+                    {% for type in types %}
+					<li><a href="{% url 'goods:list' type.id 1 %}" class="{{ type.logo }}">{{ type.name }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+			<ul class="navlist fl">
+				<li><a href={% url 'goods:index' %}>首页</a></li>
+				<li class="interval">|</li>
+				<li><a href={% url 'bussiness:register' %}>供应商入驻</a></li>
+				<li class="interval">|</li>
+				<li><a href={% url 'public:notice' %}>创客头条</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="main_con clearfix">
+		<div class="left_menu_con clearfix">
+			<div class="breadcrumb">
+				<a href="#">首页</a>
+				<span>></span>
+				<a href="#">用户中心</a>
+				<span>></span>
+                {% if page == 'user' %}
+				    <a href="#">个人信息：</a>
+                {% elif page == 'history' %}
+                    <a href="#">浏览记录：</a>
+                {% elif page == 'address' %}
+                    <a href="#">收货地址：</a>
+                {%elif page == 'order' %}
+                    <a href="#">订单管理：</a>
+                {% endif %}
+			</div>
+			<ul>
+				<li><a href="{% url 'user:user' %}" {% if page == 'user' %}class="active"{% endif %}>个人信息</a></li>
+				<li><a href="{% url 'user:history' %}" {% if page == 'history' %}class="active"{% endif %}>浏览记录</a></li>
+				<li><a href="{% url 'user:address' %}" {% if page == 'address' %}class="active"{% endif %}>收货地址</a></li>
+				<li><a href="{% url 'user:order' 1%}" {% if page == 'order' %}class="active"{% endif %}>订单管理</a></li>
+            </ul>
+		</div>
+        {# 用户中心右侧内容块 #}
+        {% block right_content %}{% endblock right_content %}
+    </div>
+{% endblock body %}

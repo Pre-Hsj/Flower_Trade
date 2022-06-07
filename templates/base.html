@@ -1,0 +1,325 @@
+{# 首页 注册 登录 #}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+{% load staticfiles %}
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    {# 网页标题内容块 #}
+	<title>{% block title %}{% endblock title %}</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<script type="text/javascript" src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/slide.js' %}"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/layer/3.5.1/layer.js"></script>
+    <link rel="stylesheet" href={% static '/css/layui.css' %}>
+    <script src={% static '/js/layui.js' %}></script>
+<style>
+        .right-main {
+            border-radius: 12px;
+        }
+
+        .address-wrap {
+            margin: 24px;
+        }
+
+        .add-address {
+            width: 124px;
+            height: 36px;
+            background: #37ab40;
+            background: linear-gradient(90deg, #37ab40 0%, #37ab40 100%);
+            border-radius: 20px;
+            color: white;
+            line-height: 36px;
+            text-align: center;
+            display: inline-block;
+            cursor: pointer;
+            margin-left: 14px;
+        }
+
+        .address-sub {
+            font-size: 14px;
+            color: #71797F;
+        }
+
+        .address-wrap .address-info {
+            border: 1px solid #F3F5F7;
+            background: white;
+        }
+
+        table {
+            font-size: 14px;
+            color: #232628;
+            width: 120%;
+            border-radius: 8px;
+        }
+
+            table thead {
+                height: 24px;
+                line-height: 24px;
+                background: #F7F9FA;
+                border-radius: 8px 8px 0px 0px;
+                border: 1px solid #F3F5F7;
+            }
+
+            table th {
+                font-weight: normal;
+            }
+
+            table .consignee {
+                width: 168px;
+                padding-left: 24px;
+                box-sizing: border-box;
+            }
+
+            table tbody .consignee {
+                width: 168px;
+                height: 60px;
+                word-break: break-all;
+                padding-right: 10px;
+            }
+
+            table tbody .shipping {
+                width: 372px;
+                height: 60px;
+                line-height: 20px;
+                padding-right: 48px;
+            }
+
+            table tbody .phone {
+                width: 133px;
+                padding-right: 48px;
+            }
+
+            table tbody .address-icon {
+                width: 12px;
+                height: 12px;
+                margin-right: 5px;
+                vertical-align: baseline;
+            }
+
+            table tbody div {
+                display: inline-block;
+                overflow: hidden;
+                color: #7E7A99;
+                width: 60px;
+                cursor: pointer;
+            }
+
+        .address-empty-icon {
+            width: 145px;
+            height: 145px;
+            margin: 145px auto 12px;
+            display: block;
+        }
+
+        .address-empty-text {
+            color: #71797F;
+            font-size: 14px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        a:hover, a:focus {
+            color: white;
+            text-decoration: none;
+        }
+
+        .consigneeModal-title {
+            font-size: 16px;
+            color: #232628;
+            margin: 0 0 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        #consigneeModal .modal-content {
+            padding: 28px 36px 36px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .modal-content .close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+        }
+
+        .consigneeModal-line {
+            color: #232628;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+            .consigneeModal-line input {
+                width: 365px;
+                outline: none;
+                border: none;
+                background: #F7F9FA;
+                border-radius: 8px;
+                height: 36px;
+                padding: 0 12px;
+                box-sizing: border-box;
+                display: inline-block;
+            }
+
+                .consigneeModal-line input::-webkit-input-placeholder {
+                    color: #B4BABF;
+                }
+
+                .consigneeModal-line input::-moz-placeholder {
+                    color: #B4BABF;
+                }
+
+                .consigneeModal-line input::-ms-input-placeholder {
+                    color: #B4BABF;
+                }
+
+        .consigneeModal-line-title {
+            width: 68px;
+            margin-right: 16px;
+            display: inline-block;
+        }
+
+            .consigneeModal-line-title span {
+                color: #FF734C;
+            }
+
+        #consigneeModal .modal-dialog {
+            width: 528px;
+        }
+
+        .consigneeModal-btns {
+            margin-top: 24px;
+        }
+
+        .consigneeModal-btn {
+            width: 132px;
+            text-align: center;
+            height: 36px;
+            line-height: 36px;
+            color: white;
+            font-size: 13px;
+            background: #37ab40;
+            background: linear-gradient(90deg, #37ab40 0%, #37ab40 100%);
+            border-radius: 18px;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+        }
+
+        .consigneeModal-btn-grey {
+            width: 132px;
+            text-align: center;
+            line-height: 36px;
+            height: 36px;
+            color: #71797F;
+            font-size: 13px;
+            background: #FFFFFF;
+            border-radius: 20px;
+            border: 1px solid #E9ECF0;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .consigneeModal-cite {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+            .consigneeModal-cite .form-control {
+                background: #F7F9FA;
+                border-radius: 8px;
+                border: none;
+                color: #272727;
+            }
+
+        .delete-address-icon {
+            margin: 36px auto 12px;
+            display: block;
+        }
+
+        .delete-address-title {
+            text-align: center;
+            font-size: 21px;
+            color: #232628;
+            margin-bottom: 32px;
+        }
+    </style>
+    {# 网页顶部引入文件块 #}
+    {% block topfiles %}{% endblock topfiles %}
+</head>
+<body>
+{# 网页顶部欢迎信息块 #}
+{% block header_con %}
+	<div class="header_con">
+		<div class="header">
+			<div class="welcome fl">欢迎来到创客花园!</div>
+			<div class="fr">
+                {% if user.is_authenticated %}
+				<div class="login_btn fl">
+					欢迎您：<em>{{ user.username }}</em>
+                    <span>|</span>
+					<a href="{% url 'user:logout' %}">退出</a>
+				</div>
+                {% else %}
+				<div class="login_btn fl">
+					<a href="{% url 'user:login' %}">登录</a>
+					<span>|</span>
+					<a href="{% url 'user:register' %}">注册</a>
+				</div>
+                {% endif %}
+				<div class="user_link fl">
+					<span>|</span>
+					<a href="{% url 'user:user' %}">用户中心</a>
+					<span>|</span>
+					<a href="{% url 'carts:show' %}">我的购物车</a>
+					<span>|</span>
+					<a href="{% url 'user:order' 1%}">我的订单</a>
+				</div>
+			</div>
+		</div>		
+	</div>
+{% endblock header_con %}
+
+{# 网页顶部搜索框块 #}
+{% block search_bar %}
+	<div class="search_bar clearfix">
+		<a href="{% url 'goods:index' %}" class="logo fl"><img src="{% static 'Image/LOGO.png' %}" height="70px"></a>
+		<div class="search_con fl">
+            <form method="get" action="/search">
+		    	<input type="text" class="input_text fl" name="q" placeholder="搜索商品">
+			    <input type="submit" class="input_btn fr" name="" value="搜索">
+            </form>
+		</div>
+		<div class="guest_cart fr">
+			<a href="{% url 'carts:show' %}" class="cart_name fl">我的购物车</a>
+			<div class="goods_count fl" id="show_count">{{ cart_count }}</div>
+		</div>
+	</div>
+{% endblock search_bar %}
+
+{# 网站主体内容块 #}
+{% block body %}{% endblock body %}
+
+	<div class="footer">
+		<div class="foot_link">
+			<a href="#">关于我们</a>
+			<span>|</span>
+			<a href="#">联系我们</a>
+			<span>|</span>
+			<a href="#">招聘人才</a>
+			<span>|</span>
+			<a href="#">友情链接</a>		
+		</div>
+		<p>CopyRight © 2022 华侨大学创客信息技术团队 All Rights Reserved</p>
+		<p>电话：010-****888    闽ICP备*******8号</p>
+	</div>
+    {# 网页底部html元素块 #}
+    {% block bottom %}{% endblock bottom %}
+    {# 网页底部引入文件块 #}
+	{% block bottomfiles %}{% endblock bottomfiles %}
+</body>
+</html>

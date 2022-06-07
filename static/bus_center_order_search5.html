@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+        <link rel="stylesheet" href="/css/layui.css">
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <script src="/js/layui.js"></script>
+	</head>
+
+	<body>
+		<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+            <ul class="layui-tab-title">
+              <li ><a href="bus_center_order_search1.html">全部订单</a></li>
+              <li ><a href="bus_center_order_search2.html">待付款</a></li>
+              <li ><a href="bus_center_order_search3.html">进行中</a></li>
+              <li ><a href="bus_center_order_search4.html">待评价</a></li>
+              <li class="layui-this">已完成</li>
+              <li><a href="bus_center_order_search6.html">已取消</a></li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="right_content_bus clearfix" style="margin-left: 0;">
+                    <ul class="order_list_th w978 clearfix">
+                        <li class="col01">2016-8-21 17:36:24</li>
+                        <li class="col02">订单号：56872934</li>
+                        <li class="col02 stress">未支付</li>		
+                    </ul>
+    
+                    <table class="order_list_table w980">
+                        <tbody>
+                            <tr>
+                                <td width="55%">
+                                    <ul class="order_goods_list clearfix">					
+                                        <li class="col01"><img src="images/goods02.jpg"></li>
+                                        <li class="col02">嘎啦苹果嘎啦苹果<em>11.80元/500g</em></li>	
+                                        <li class="col03">1</li>
+                                        <li class="col04">11.80元</li>	
+                                    </ul>
+                                    <ul class="order_goods_list clearfix">					
+                                        <li class="col01"><img src="images/goods02.jpg"></li>
+                                        <li class="col02">嘎啦苹果嘎啦苹果<em>11.80元/500g</em></li>	
+                                        <li class="col03">1</li>
+                                        <li class="col04">11.80元</li>	
+                                    </ul>
+                                </td>
+                                <td width="15%">33.60元</td>
+                                <td width="15%">已完成</td>
+                                <td width="15%"><a href="#" class="oper_btn">去付款</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+    
+                    <div class="pagenation">
+                        <a href="#"><上一页</a>
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">5</a>
+                        <a href="#">下一页></a>
+                    </div>
+            </div>
+            </div>
+          </div>      
+           
+          <script>
+          //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+          layui.use('element', function(){
+            var element = layui.element;
+            
+            //…
+          });
+          </script>
+	</body>
+</html>

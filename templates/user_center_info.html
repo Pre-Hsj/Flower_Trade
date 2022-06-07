@@ -1,0 +1,22 @@
+{% extends 'base_user_center.html' %}
+{% block right_content %}
+{% load staticfiles %}
+    <div class="right_content clearfix">
+        <div class="info_con clearfix">
+            <ul class="user_info_list">
+                <li><img src="{% static '/Image/Kinds/Dry/1.jpg' %}" title="点击可更换头像" style="width: 150px;margin-left: 10%;border-radius:50%"></li>
+                <li><span style="font-weight: bold;">用户名称：</span>{{ user.username }}</li>
+                <li><span style="font-weight: bold;">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</span>18750423485</li>
+                <li><span style="font-weight: bold;">联系邮箱：</span>{{ user.email}}</li>
+                <li><span style="font-weight: bold;">生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：</span>{{ user.create_time }}</li>
+                <li><span style="font-weight: bold;">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</span>男</li>
+                <li><span style="font-weight: bold;">联系电话：</span>18750423485</li>
+                <li><span style="font-weight: bold;">联系地址：</span>福建省厦门市</li>
+                <li><span style="font-weight: bold;">个性签名：</span>自由之花。</li>
+                <li><span style="font-weight: bold;">账号关联：</span>18750423485</li>
+            </ul>
+            <input type="submit" value="修改信息" class="Change_submit">
+			</div>
+
+    </div>
+{% endblock right_content %}

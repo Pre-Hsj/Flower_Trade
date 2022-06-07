@@ -1,0 +1,122 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>注册页面</title>
+<link rel="stylesheet" href="/css/layui.css">
+<script src="/js/layui.js"></script>
+
+<style type="text/css">
+#ce {
+	margin: 0px 0px 0px 400px;
+}
+</style>
+
+</head>
+<body>
+	<div id="ce">
+		<form class="layui-form" style="margin-left: -150px;">
+			<!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+			<div class="layui-form-item" >
+				<label class="layui-form-label">店铺名称</label>
+				<div class="layui-input-block" style="width: 200px" >
+					<input type="text" name="" placeholder="请输入" autocomplete="off"
+						class="layui-input">
+				</div>
+			</div>
+            <div class="layui-form-item">
+				<label class="layui-form-label">商品种类</label>
+				<div class="layui-input-block">
+					<input type="checkbox" name="like[Fresh]" title="鲜切花"> 
+                    <input type="checkbox" name="like[Fake]" title="仿真花">
+                    <input type="checkbox" name="like[Forever]" title="永生花">
+                    <input type="checkbox" name="like[Dry]" title="干花"> 
+                    <input type="checkbox" name="like[Green]" title="绿植">
+                    <input type="checkbox" name="like[Vase]" title="花瓶">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">官方邮箱</label>
+				<div class="layui-input-block" style="width: 200px;">
+					<input type="text" name="" placeholder="请输入" autocomplete="off"
+						class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">店铺所在地</label>
+				<div class="layui-input-block" style="width: 120px;">
+					<select name="interest" lay-filter="aihao">
+						<option value="北京">北京</option>
+						<option value="上海">上海</option>
+						<option value="深圳">深圳</option>
+						<option value="青岛">青岛</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-form-item" style="margin: 0px 0px 0px 25px;">
+				<label class="layui-form-label">邮件提醒</label>
+				<div class="layui-input-block">
+					<input type="checkbox" lay-skin="switch">
+				</div>
+			</div>
+			<br>
+			<div class="layui-form-item layui-form-text"
+				style="margin: 0px 0px 0px 25px; width: 600px;">
+				<label class="layui-form-label">店铺宣言</label>
+				<div class="layui-input-block">
+					<textarea placeholder="请填写内容" class="layui-textarea"></textarea>
+				</div>
+			</div>
+			<br> <br>
+			<div class="layui-form-item" style="margin: 0px 0px 0px 100px;">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				</div>
+			</div>
+			<!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+		</form>
+
+	</div>
+
+
+	<script src="/jslayui.js"></script>
+	<script>
+		//Demo
+		layui.use('form', function() {
+			var form = layui.form;
+
+			//监听提交
+			form.on('submit(formDemo)', function(data) {
+				layer.msg(JSON.stringify(data.field));
+				return false;
+			});
+		});
+	</script>
+	<script>
+		//注意：导航 依赖 element 模块，否则无法进行功能性操作
+		layui.use('element', function() {
+			var element = layui.element;
+		});
+	</script>
+	<script>
+		layui.use('util', function() {
+			var util = layui.util;
+			//执行
+			util.fixbar({
+				bar1 : true,
+				bar2 : true,
+				click : function(type) {
+					console.log(type);
+					if (type === 'bar1') {
+						alert('点击了bar1')
+					}
+				}
+			});
+		});
+	</script>
+</body>
+</html>

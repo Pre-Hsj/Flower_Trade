@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href={% static '/css/layui.css' %}>
+    <script src={% static '/js/layui.js' %}></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href={% static 'css/reset.css'  %}>
+    <link rel="stylesheet" type="text/css" href= {% static 'css/main.css' %}>
+
+</head>
+<body>
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+        <div class="layui-tab-content">
+              <table class="layui-hide" id="LAY_table_user" lay-filter="useruv"></table>
+              <script type="text/html" id="barDemo">
+                <a class="layui-btn layui-btn-primary layui-btn-mini" lay-event="detail">查看</a>
+                <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+            </script>
+        </div>
+    </div>
+    <script>
+        layui.use('table', function(){
+            var table = layui.table;
+
+        //方法级渲染
+        table.render({
+           elem: '#LAY_table_user'
+           ,url: '/public/selectfeedbackhistory/'+{{ business.id }}
+           ,cols: [[
+               {checkbox: true, fixed: true}
+               ,{field:'id', title: '编号', width:80, sort: true, fixed: true}
+               ,{field:'create_time', title: '反馈时间',width: 240}
+               ,{field:'feedbackContent', title: '反馈内容', width:240}
+               ,{field:'feedbackAnswer', title: '反馈解答', width:240}
+               ,{field:'right', title: '操作', width:280,toolbar:"#barDemo"}
+           ]]
+           ,id: 'testReload'
+           ,page: true
+            ,limit: 10
+            ,limits: [10,15,20,25,30]
+            ,text: {none: '暂无内容'}
+           ,height: 600
+            ,parseData: function (res) {
+               var result;
+               console.log(JSON.stringify(res));
+               if(this.page.curr){
+                   result = res.data.slice(this.limit*(this.page.curr-1),this.limit*this.page.curr);
+               }else{
+                   result = res.data.slice(0,this.limit);
+               }
+               return{
+                   "code": res.code,
+                   "msg" : res.msg,
+                   "count" : res.count,
+                   "data" : result
+                }
+            }
+       });
+
+
+       var $ = layui.$, active = {
+           reload: function(){
+               var demoReload = $('#demoReload');
+
+               table.reload('testReload', {
+                   page: {
+                       curr: 1
+                   },
+                   where: {
+                       keyword: demoReload.val()
+                    }
+               });
+           }
+       };
+
+
+   //监听表格复选框选择
+   table.on('checkbox(useruv)', function(obj){
+       console.log(obj)
+   });
+
+       //监听工具条
+            table.on('tool(useruv)',function (obj) {
+                var data = obj.data;
+                if(obj.event === 'detail' ){
+                     alert('ID：'+ data.id + '的查看操作');
+                }
+                else if(obj.event === 'edit'){
+                    alert('ID：'+ data.id + '的编辑操作');
+                }else{
+                    alert('ID：'+ data.id + '的删除操作');
+                }
+            });
+            //监听头部工具栏事件
+
+
+});
+</script>
+<script type="text/html" id="img">
+    <div>
+        <img src='{{ d.data.image }}'  style="width: 30px; height: 30px; ">
+    </div>
+</script>
+</body>
+</html>

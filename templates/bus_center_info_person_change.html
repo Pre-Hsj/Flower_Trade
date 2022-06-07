@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+<meta charset="UTF-8">
+<title>注册页面</title>
+<link rel="stylesheet" href={% static '/css/layui.css' %}>
+<script src={% static '/js/layui.js' %}></script>
+
+<style type="text/css">
+#ce {
+	margin: 0px 0px 0px 400px;
+}
+</style>
+
+</head>
+<body>
+	<div id="ce">
+		<form class="layui-form" method="post" action={% url 'bussiness:person_change' business.id %}>
+            {% csrf_token %}
+			<!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+			<div class="layui-form-item" style="left:auto">
+				<label class="layui-form-label">姓名</label>
+				<div class="layui-input-block" style="width: 120px;">
+					<input type="text" name="personName" placeholder="请输入" value={{ business.personName }} autocomplete="off"
+						class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">性别</label>
+				<div class="layui-input-block">
+					<input type="radio" name="sex" value="0" title="男"> <input
+						type="radio" name="sex" value="1" title="女" checked>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">年龄</label>
+				<div class="layui-input-block" style="width: 120px;">
+					<input type="text" name="personAge" placeholder="请输入" value={{ business.personAge }} autocomplete="off"
+						class="layui-input">
+				</div>
+			</div>
+            <div class="layui-form-item">
+				<label class="layui-form-label">邮件地址</label>
+				<div class="layui-input-block" style="width: 120px;">
+					<input type="text" name="personEmail" placeholder="请输入" value="{{ business.personEmail }}" autocomplete="off"
+						class="layui-input">
+				</div>
+			</div>
+            <div class="layui-form-item">
+				<label class="layui-form-label">生日</label>
+				<div class="layui-input-block" style="width: 120px;">
+					<input type="date" name="personDate" value={{ business.personDate }}/>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">所在城市</label>
+				<div class="layui-input-block" style="width: 120px;">
+					<select name="interest" lay-filter="aihao">
+						<option value="北京">北京</option>
+						<option value="上海">上海</option>
+						<option value="深圳">深圳</option>
+						<option value="青岛">青岛</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-form-item" style="margin: 0px 0px 0px 25px;">
+				<label class="layui-form-label">邮件提醒</label>
+				<div class="layui-input-block">
+					<input type="checkbox" lay-skin="switch" name="personRemind">
+				</div>
+			</div>
+			<br>
+			<div class="layui-form-item layui-form-text"
+				style="margin: 0px 0px 0px 25px; width: 600px;">
+				<label class="layui-form-label">信息描述</label>
+				<div class="layui-input-block">
+					<textarea placeholder="请填写内容" name="personDescription" class="layui-textarea">{{ business.personDescription }}</textarea>
+				</div>
+			</div>
+			<br> <br>
+			<div class="layui-form-item" style="margin: 0px 0px 0px 100px;">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				</div>
+			</div>
+			<!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+		</form>
+
+	</div>
+	<script>
+		//Demo
+		layui.use('form', function() {
+			var form = layui.form;
+
+			//监听提交
+			form.on('submit(formDemo)', function(data) {
+				layer.msg(JSON.stringify(data.field));
+				return false;
+			});
+		});
+	</script>
+	<script>
+		//注意：导航 依赖 element 模块，否则无法进行功能性操作
+		layui.use('element', function() {
+			var element = layui.element;
+		});
+	</script>
+	<script>
+		layui.use('util', function() {
+			var util = layui.util;
+
+			//执行
+			util.fixbar({
+				bar1 : true,
+				bar2 : true,
+				click : function(type) {
+					console.log(type);
+					if (type === 'bar1') {
+						alert('点击了bar1')
+					}
+				}
+			});
+		});
+	</script>
+</body>
+</html>

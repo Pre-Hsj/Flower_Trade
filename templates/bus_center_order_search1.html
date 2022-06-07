@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+        <link rel="stylesheet" href={% static '/css/layui.css' %}>
+        <link rel="stylesheet" type="text/css" href={% static 'css/reset.css' %}>
+        <link rel="stylesheet" type="text/css" href={% static 'css/main.css' %}>
+        <script src={% static '/js/layui.js' %}></script>
+	</head>
+
+	<body>
+		<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+            <ul class="layui-tab-title">
+              <li class="layui-this">全部订单</li>
+              <li><a href={% url 'bussiness:order2' business.id 1%}>待付款</a></li>
+              <li><a href={% url 'bussiness:order3' business.id 1%}>进行中</a></li>
+              <li><a href={% url 'bussiness:order4' business.id 1%}>待评价</a></li>
+              <li><a href={% url 'bussiness:order5' business.id 1%}>已完成</a></li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="right_content_bus clearfix" style="margin-left: 0;">
+                    {% for order in orderSons %}
+                        <ul class="order_list_th w978 clearfix">
+                            <li class="col01">{{ order.create_time }}</li>
+                            <li class="col02">订单号：{{ order.order_id }}</li>
+                            <li class="col02 stress">{{ order.status_name }}</li>
+                        </ul>
+                        <table class="order_list_table w980">
+                            <tbody>
+                                <tr>
+                                    <td width="55%">
+                                        {% for order_sku in order.orderGoods %}
+                                        <ul class="order_goods_list clearfix">
+                                            <li class="col01"><img src="{{ order_sku.sku.image.url }}"></li>
+                                            <li class="col02">{{ order_sku.sku.name }}<em>{{ order_sku.price }}元/{{ order_sku.sku.unite }}</em></li>
+                                            <li class="col03">{{ order_sku.count }}</li>
+                                            <li class="col04">{{ order_sku.amount }}元</li>
+                                        </ul>
+                                        {% endfor %}
+                                    </td>
+                                    <td width="15%">{{ order.orderInfo.total_price|add:order.orderInfo.transit_price }}(含运费:{{ order.orderInfo.transit_price }})元</td>
+                                    <td width="15%">{{ order.status_name }}</td>
+                                    <td width="15%"><a href="#" order_id="{{ order.order_id }}" status="{{ order.order_status }}" class="oper_btn">用户待操作</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    {% endfor %}
+                    <div class="pagenation">
+                        {% if order_page.has_previous_page %}
+                        <a href="{% url 'bussiness:order1' business.id  order_page.previous_page_number %}"><上一页</a>
+                        {% endif %}
+                        {% for pindex in order_page.paginator.page_range %}
+                            {% if pindex == order_page.number %}
+                                <a href="{% url 'bussiness:order1' business.id pindex %}" class="active">{{ pindex }}</a>
+                            {% else %}
+                                <a href="{% url 'bussiness:order1' business.id pindex %}">{{ pindex }}</a>
+                            {% endif %}
+                        {% endfor %}
+                        {% if order_page.has_next_page %}
+                        <a href="{% url 'bussiness:order1' business.id order_page.next_page_number %}">下一页></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+          //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+          layui.use('element', function(){
+            var element = layui.element;
+            
+            //…
+          });
+          </script>
+	</body>
+</html>

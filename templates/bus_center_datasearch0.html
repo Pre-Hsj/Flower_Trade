@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href={% static '/css/layui.css' %}>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/layer/3.5.1/layer.js"></script>
+    <script src={% static '/js/layui.js' %}></script>
+    <link rel="stylesheet" type="text/css" href={% static 'css/reset.css'  %}>
+    <link rel="stylesheet" type="text/css" href= {% static 'css/main.css' %}>
+
+</head>
+<body>
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+        <ul class="layui-tab-title">
+            <li ><a class="layui-this" >店铺数据</a></li>
+            <li><a href={% url 'bussiness:datasearch1' business.id %}>商品数据</a></li>
+        </ul>
+        <div class="layui-tab-content">
+            <table class="order_list_table w980">
+                <tbody>
+                    <tr style="height: 50px">
+                        <td width="50%">
+                            <ul>
+                                <li style="font-size: larger">成立时间：{{ business.create_time }}</li>
+                            </ul>
+                        </td>
+                        <td width="50%">
+                            <ul>
+                                <li style="font-size: larger">经营种类：{{ business.kinds }}</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="order_list_table w980">
+                    <tbody>
+                        <tr>
+                            <td width="50%">
+                                <ul style="margin-left: 0;height: 35px;margin-top: 15px">
+                                    <li style="font-size: larger">已成交订单数：{{ orderDone }}</li>
+                                </ul>
+                                <ul style="margin-left: 0;height: 35px;margin-top: 15px">
+                                    <li style="font-size: larger">在进行订单数：{{ orderProcessing }}</li>
+                                </ul>
+                                <ul style="margin-left: 0;height: 35px;margin-top: 15px">
+                                    <li style="font-size: larger">预付款订单数：{{ orderTopay }}</li>
+                                </ul>
+                            </td>
+                            <td width="25%">
+                                <ul>
+                                    <li style="font-size: larger">订单总数：{{ orderCount }}</li>
+                                </ul>
+                            </td>
+                            <td width="25%">
+                                <ul>
+                                    <li style="font-size: larger">订单成交额：{{ orderMoney }}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            <table class="order_list_table w980">
+                    <tbody>
+                        <tr>
+                            <td width="25%">
+                                <ul style="margin-left: 0;height: 35px;margin-top: 15px">
+                                    <li style="font-size: larger">鲜切花类别数：{{ FreshType }}</li>
+                                </ul>
+                                <ul style="margin-left: 0;height: 35px;margin-top: 15px">
+                                    <li style="font-size: larger">仿真花类别数：{{ FakeType }}</li>
+                                </ul>
+                                <ul style="margin-left: 0;height: 35px;margin-top: 15px">
+                                    <li style="font-size: larger">永生花类别数：{{ ForeverType }}</li>
+                                </ul>
+                                <ul style="margin-left: 0;height: 35px;margin-top: 15px">
+                                    <li style="font-size: larger">绿植类别数：{{ GreenType }}</li>
+                                </ul>
+                                <ul style="margin-left: 0;height: 35px;margin-top: 15px">
+                                    <li style="font-size: larger">干花类别数：{{ DryType }}</li>
+                                </ul>
+                                <ul style="margin-left: 0;height: 35px;margin-top: 15px">
+                                    <li style="font-size: larger">花瓶类别数：{{ VaseType }}</li>
+                                </ul>
+                            </td>
+                            <td width="25%">
+                                <ul style="margin-left: 0;height: 35px;margin-top: 15px">
+                                    <li style="font-size: larger">商品数：{{ FreshGoods }}</li>
+                                </ul>
+                                <ul style="margin-left: 0;height: 35px;margin-top: 15px">
+                                    <li style="font-size: larger">商品数：{{ FakeGoods }}</li>
+                                </ul>
+                                <ul style="margin-left: 0;height: 35px;margin-top: 15px">
+                                    <li style="font-size: larger">商品数：{{ ForeverGoods }}</li>
+                                </ul>
+                                <ul style="margin-left: 0;height: 35px;margin-top: 15px">
+                                    <li style="font-size: larger">商品数：{{ GreenGoods }}</li>
+                                </ul>
+                                <ul style="margin-left: 0;height: 35px;margin-top: 15px">
+                                    <li style="font-size: larger">商品数：{{ DryGoods }}</li>
+                                </ul>
+                                <ul style="margin-left: 0;height: 35px;margin-top: 15px">
+                                    <li style="font-size: larger">商品数：{{ VaseGoods }}</li>
+                                </ul>
+                            </td>
+                            <td width="25%">
+                                <ul>
+                                    <li style="font-size: larger">类别总数：{{ TypeAll }}</li>
+                                </ul>
+                            </td>
+                            <td width="25%">
+                                <ul>
+                                    <li style="font-size: larger">商品总数：{{ GoodsAll }}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

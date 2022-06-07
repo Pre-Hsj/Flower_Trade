@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+        <link rel="stylesheet" href="/css/layui.css">
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <script src="/js/layui.js"></script>
+	</head>
+
+	<body>
+        <div class="demoTable">
+          搜索订单编号：
+         <div class="layui-inline">
+              <input class="layui-input" name="keyword" id="demoReload" autocomplete="off">
+         </div>
+               <button class="layui-btn" data-type="reload">搜索</button>
+         </div>
+        
+        <table class="layui-hide" id="LAY_table_user" lay-filter="useruv"></table>
+        <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-primary layui-btn-mini" lay-event="detail">查看</a>
+        <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+        </script>
+        <script>
+             layui.use('table', function(){
+              var table = layui.table;
+
+             //方法级渲染
+             table.render({
+                elem: '#LAY_table_user'
+                ,url: 'UVServlet'
+                ,cols: [[
+                    {checkbox: true, fixed: true}
+                    ,{field:'id', title: '订单编号', width:120, sort: true, fixed: true}
+                    ,{field:'user', title: '用户名称', width:180, sort: true}
+                    ,{field:'number', title: '订单内成交量', width:180, sort: true,edit:true}
+                    ,{field:'datetime', title: '订单成交日期', width:180}
+                    ,{field:'commenttime', title: '订单评价日期', width:110}
+                    ,{field:'comment', title: '具体评价', width:200},
+                    ,{field:'right', title: '操作', width:177,toolbar:"#barDemo"}
+                ]]
+                ,id: 'testReload'
+                ,page: true
+                ,height: 600
+            });
+
+            var $ = layui.$, active = {
+                reload: function(){
+                    var demoReload = $('#demoReload');
+
+                    table.reload('testReload', {
+                        where: {
+                            keyword: demoReload.val()
+                    }
+                    });
+                }
+            };
+
+
+
+        //监听表格复选框选择
+        table.on('checkbox(useruv)', function(obj){
+            console.log(obj)
+        });
+        //监听工具条
+        table.on('tool(useruv)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'detail'){
+                layer.msg('ID：'+ data.id + ' 的查看操作');
+            } else if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    console.log(data);
+                    $.ajax({
+                        url: "UVServlet",
+                        type: "POST",
+                        data:{"uvid":data.id,"memthodname":"deleteuv","aid":data.aid},
+                        dataType: "json",
+                        success: function(data){
+
+                            if(data.state==1){
+                                obj.del();
+                                layer.close(index);
+                                layer.msg("删除成功", {icon: 6});
+                            }else{
+                                layer.msg("删除失败", {icon: 5});
+                            }
+                        }
+
+                    });
+                });
+            } else if(obj.event === 'edit'){
+
+                layer.prompt({
+                    formType: 2
+                    ,title: '修改 ID 为 ['+ data.id +'] 的访问量'
+                    ,value: data.uv
+                }, function(value, index){
+                    EidtUv(data,value,index,obj);
+                   
+
+
+                });
+
+
+
+            }
+        });
+
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+        function  EidtUv(data,value,index,obj) {
+            $.ajax({
+                url: "UVServlet",
+                type: "POST",
+                data:{"uvid":data.id,"memthodname":"edituv","aid":data.aid,"uv":value},
+                dataType: "json",
+                success: function(data){
+
+                    if(data.state==1){
+
+                        layer.close(index);
+                        //同步更新表格和缓存对应的值
+                        obj.update({
+                            uv: value
+                        });
+                        layer.msg("修改成功", {icon: 6});
+                    }else{
+                        layer.msg("修改失败", {icon: 5});
+                    }
+                }
+
+            });
+        }
+
+
+    });
+</script>
+	</body>
+</html>
